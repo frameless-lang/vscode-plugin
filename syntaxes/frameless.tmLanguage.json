@@ -85,8 +85,9 @@
 			"end": "\"",
 			"patterns": [
 				{
-					"name": "constant.character.escape.frameless",
-					"match": "\\\\."
+					"begin": "\\$\\{",
+					"end": "\\}",
+					"name": "variable"
 				}
 			]
 		}
