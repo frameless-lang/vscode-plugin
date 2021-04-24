@@ -40,7 +40,7 @@
 							"patterns": [
 								{
 									"name": "entity.name.tag",
-									"match": "^[\t]+(\\p{Ll})+(\\s|$)"
+									"match": "^[\t]+((\\p{Ll})+:)?(\\p{Ll})+(\\s|$)"
 								}
 							]
 						},
