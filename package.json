@@ -1,0 +1,25 @@
+{
+    "name": "frameless",
+    "displayName": "frameless",
+    "description": "frameless langauge support",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.55.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "frameless",
+            "aliases": ["frameless", "frameless"],
+            "extensions": [".fl"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "frameless",
+            "scopeName": "source.frameless",
+            "path": "./syntaxes/frameless.tmLanguage.json"
+        }]
+    }
+}

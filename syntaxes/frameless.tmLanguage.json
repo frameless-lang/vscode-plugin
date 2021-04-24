@@ -1,0 +1,67 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "frameless",
+	"patterns": [
+		{
+			"include": "#root"
+		}
+	],
+	"repository": {
+		"root": {
+			"repository": {
+				"view": {
+					"patterns": [
+						{
+							"match": "^view$",
+							"name": "support.class"
+						},
+						{
+							"include": "#helpers"
+						}
+					],
+					"repository": {
+						"helpers": {
+							"patterns": [
+								{
+									"name": "keyword.control.frameless",
+									"match": "#[(a-z)]+"
+								}
+							]
+						}
+					}
+				},
+				"style": {
+					"patterns": [
+						{
+							"match": "^style$",
+							"name": "support.class"
+						}
+					]
+				}
+			},
+			"patterns": [
+				{
+					"include": "#view"
+				},
+				{
+					"include": "#style"
+				},
+				{
+					"include": "#strings"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.frameless",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.frameless",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.frameless"
+}
