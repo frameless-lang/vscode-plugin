@@ -4,6 +4,8 @@
 	"patterns": [
 		{
 			"include": "#root"
+		}, {
+			"include": "#invalid"
 		}
 	],
 	"repository": {
@@ -17,14 +19,36 @@
 						},
 						{
 							"include": "#helpers"
+						},
+						{
+							"include": "#hostelement"
+						},
+						{
+							"include": "#component"
 						}
 					],
 					"repository": {
 						"helpers": {
 							"patterns": [
 								{
-									"name": "keyword.control.frameless",
-									"match": "#[(a-z)]+"
+									"name": "keyword.control",
+									"match": "^[\t]+#[(a-z)]+(\\s|$)"
+								}
+							]
+						},
+						"hostelement": {
+							"patterns": [
+								{
+									"name": "entity.name.tag",
+									"match": "^[\t]+(\\p{Ll})+(\\s|$)"
+								}
+							]
+						},
+						"component": {
+							"patterns": [
+								{
+									"name": "entity.name.function",
+									"match": "^[\t]+(\\p{Ll})+(\\p{Pd}(\\p{Ll})+)+(\\s|$)"
 								}
 							]
 						}
@@ -50,6 +74,10 @@
 					"include": "#strings"
 				}
 			]
+		},
+		"invalid": {
+			"match": "^[[:print:]]+",
+			"name": "invalid.illegal"
 		},
 		"strings": {
 			"name": "string.quoted.double.frameless",
