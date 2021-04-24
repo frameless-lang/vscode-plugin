@@ -10,16 +10,27 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "frameless",
-            "aliases": ["frameless", "frameless"],
-            "extensions": [".fl"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "frameless",
-            "scopeName": "source.frameless",
-            "path": "./syntaxes/frameless.tmLanguage.json"
-        }]
-    }
+        "languages": [
+            {
+                "id": "frameless",
+                "aliases": [
+                    "frameless",
+                    "frameless"
+                ],
+                "extensions": [
+                    ".fl"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "frameless",
+                "scopeName": "source.frameless",
+                "path": "./syntaxes/frameless.tmLanguage.json"
+            }
+        ]
+    },
+    "author": "Carlo Jeske",
+    "license": "MIT"
 }
