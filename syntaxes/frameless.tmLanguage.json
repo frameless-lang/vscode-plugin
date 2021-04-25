@@ -7,6 +7,9 @@
 		},
 		{
 			"include": "#style"
+		},
+		{
+			"include": "#invalid"
 		}
 	],
 	"repository": {
@@ -38,7 +41,11 @@
 			"repository": {
 				"helpers": {
 					"name": "keyword.control",
-					"match": "^#[(a-z)]+($|\\s(.)*)"
+					"match": "^#[(a-z)]+",
+					"patterns": [{
+						"match": "(.)*",
+						"name": "comment"
+					}]
 				},
 				"hostelement": {
 					"name": "entity.name.tag",
@@ -52,11 +59,21 @@
 		},
 		"helpers": {
 			"name": "keyword.control",
-			"match": "#[(a-z)]+(\\s|$)"
+			"match": "#\\p{Ll}+(\n|\\s(.)*)",
+			"captures": {
+				"1": {
+					"name": "comment"
+				}
+			}
 		},
 		"hostelement": {
 			"name": "entity.name.tag",
-			"match": "((\\p{Ll})+:)?(\\p{Ll})+(\\s|$)"
+			"match": "((\\p{Ll})+:)?(\\p{Ll})+(\n|\\s(.)*)",
+			"captures": {
+				"4": {
+					"name": "comment"
+				}
+			}
 		},
 		"component": {
 			"name": "entity.name.function",
