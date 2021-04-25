@@ -3,82 +3,72 @@
 	"name": "frameless",
 	"patterns": [
 		{
-			"include": "#root"
+			"include": "#view"
 		},
 		{
-			"include": "#invalid"
+			"include": "#style"
 		}
 	],
 	"repository": {
-		"root": {
-			"repository": {
-				"view": {
-					"patterns": [
-						{
-							"match": "^view$",
-							"name": "support.class"
-						},
-						{
-							"include": "#helpers"
-						},
-						{
-							"include": "#hostelement"
-						},
-						{
-							"include": "#component"
-						}
-					],
-					"repository": {
-						"helpers": {
-							"patterns": [
-								{
-									"name": "keyword.control",
-									"match": "^[\t]+#[(a-z)]+(\\s|$)"
-								}
-							]
-						},
-						"hostelement": {
-							"patterns": [
-								{
-									"name": "entity.name.tag",
-									"match": "^[\t]+((\\p{Ll})+:)?(\\p{Ll})+(\\s|$)"
-								}
-							]
-						},
-						"component": {
-							"patterns": [
-								{
-									"name": "entity.name.function",
-									"match": "^[\t]+(\\p{Ll})+(\\p{Pd}(\\p{Ll})+)+(\\s|$)"
-								}
-							]
-						}
-					}
-				},
-				"style": {
-					"patterns": [
-						{
-							"match": "^style$",
-							"name": "support.class"
-						}
-					]
+		"view": {
+			"begin": "^(view)$",
+			"beginCaptures": {
+				"1": {
+					"name": "support.class"
 				}
 			},
 			"patterns": [
 				{
-					"include": "#view"
+					"include": "#helpers"
 				},
 				{
-					"include": "#style"
+					"include": "#hostelement"
+				},
+				{
+					"include": "#component"
 				},
 				{
 					"include": "#strings"
+				},
+				{
+					"include": "#invalid"
+				}
+			],
+			"while": "^((\t)+|\n)",
+			"repository": {
+				"helpers": {
+					"name": "keyword.control",
+					"match": "^#[(a-z)]+($|\\s(.)*)"
+				},
+				"hostelement": {
+					"name": "entity.name.tag",
+					"match": "^((\\p{Ll})+:)?(\\p{Ll})+(\\s|$)"
+				},
+				"component": {
+					"name": "entity.name.function",
+					"match": "^(\\p{Ll})+(\\p{Pd}(\\p{Ll})+)+(\\s|$)"
+				}
+			}
+		},
+		"helpers": {
+			"name": "keyword.control",
+			"match": "#[(a-z)]+(\\s|$)"
+		},
+		"hostelement": {
+			"name": "entity.name.tag",
+			"match": "((\\p{Ll})+:)?(\\p{Ll})+(\\s|$)"
+		},
+		"component": {
+			"name": "entity.name.function",
+			"match": "(\\p{Ll})+(\\p{Pd}(\\p{Ll})+)+(\\s|$)"
+		},
+		"style": {
+			"patterns": [
+				{
+					"match": "^style$",
+					"name": "support.class"
 				}
 			]
-		},
-		"invalid": {
-			"match": "^[[:print:]]+",
-			"name": "invalid.illegal"
 		},
 		"strings": {
 			"name": "string.quoted.double.frameless",
@@ -91,6 +81,10 @@
 					"name": "variable"
 				}
 			]
+		},
+		"invalid": {
+			"match": "(.)+",
+			"name": "invalid.illegal"
 		}
 	},
 	"scopeName": "source.frameless"
