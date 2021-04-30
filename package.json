@@ -1,7 +1,7 @@
 {
-    "name": "frameless",
-    "displayName": "frameless",
-    "description": "frameless langauge support",
+    "name": "strictly",
+    "displayName": "strictly",
+    "description": "strictly langauge support",
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.55.0"
@@ -12,22 +12,22 @@
     "contributes": {
         "languages": [
             {
-                "id": "frameless",
+                "id": "strictly",
                 "aliases": [
-                    "frameless",
-                    "frameless"
+                    "strictly",
+                    "strictly"
                 ],
                 "extensions": [
-                    ".fl"
+                    ".sly"
                 ],
                 "configuration": "./language-configuration.json"
             }
         ],
         "grammars": [
             {
-                "language": "frameless",
-                "scopeName": "source.frameless",
-                "path": "./syntaxes/frameless.tmLanguage.json"
+                "language": "strictly",
+                "scopeName": "source.strictly",
+                "path": "./syntaxes/strictly.tmLanguage.json"
             }
         ]
     },

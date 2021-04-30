@@ -1,6 +1,6 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "frameless",
+	"name": "strictly",
 	"patterns": [
 		{
 			"include": "#view"
@@ -88,7 +88,7 @@
 			]
 		},
 		"strings": {
-			"name": "string.quoted.double.frameless",
+			"name": "string.quoted.double.strictly",
 			"begin": "\"",
 			"end": "\"",
 			"patterns": [
@@ -104,5 +104,5 @@
 			"name": "invalid.illegal"
 		}
 	},
-	"scopeName": "source.frameless"
+	"scopeName": "source.strictly"
 }
