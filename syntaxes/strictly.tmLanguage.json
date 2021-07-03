@@ -22,13 +22,13 @@
 			},
 			"patterns": [
 				{
-					"include": "#helpers"
+					"include": "#view-helpers"
 				},
 				{
-					"include": "#hostelement"
+					"include": "#view-hostelement"
 				},
 				{
-					"include": "#component"
+					"include": "#view-component"
 				},
 				{
 					"include": "#strings"
@@ -37,27 +37,9 @@
 					"include": "#invalid"
 				}
 			],
-			"while": "^((\t)+|\n)",
-			"repository": {
-				"helpers": {
-					"name": "keyword.control",
-					"match": "^#[(a-z)]+",
-					"patterns": [{
-						"match": "(.)*",
-						"name": "comment"
-					}]
-				},
-				"hostelement": {
-					"name": "entity.name.tag",
-					"match": "^((\\p{Ll})+:)?(\\p{Ll})+(\\s|$)"
-				},
-				"component": {
-					"name": "entity.name.function",
-					"match": "^(\\p{Ll})+(\\p{Pd}(\\p{Ll})+)+(\\s|$)"
-				}
-			}
+			"while": "^((\t)+|\n)"
 		},
-		"helpers": {
+		"view-helpers": {
 			"name": "keyword.control",
 			"match": "#\\p{Ll}+(\n|\\s(.)*)",
 			"captures": {
@@ -66,18 +48,13 @@
 				}
 			}
 		},
-		"hostelement": {
+		"view-hostelement": {
 			"name": "entity.name.tag",
-			"match": "((\\p{Ll})+:)?(\\p{Ll})+(\n|\\s(.)*)",
-			"captures": {
-				"4": {
-					"name": "comment"
-				}
-			}
+			"match": "((\\p{Ll})+:)?(\\p{Ll})+(\\s|$|(?={))"
 		},
-		"component": {
+		"view-component": {
 			"name": "entity.name.function",
-			"match": "(\\p{Ll})+(\\p{Pd}(\\p{Ll})+)+(\\s|$)"
+			"match": "(\\p{Ll})+(\\p{Pd}(\\p{Ll})+)+(\\s|$|(?={))"
 		},
 		"style": {
 			"patterns": [
