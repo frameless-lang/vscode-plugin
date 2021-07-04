@@ -17,12 +17,7 @@
 	],
 	"repository": {
 		"view": {
-			"begin": "^(view)$",
-			"beginCaptures": {
-				"1": {
-					"name": "support.constant"
-				}
-			},
+			"begin": "^view$",
 			"patterns": [
 				{
 					"include": "#view-helpers"
@@ -94,11 +89,6 @@
 		},
 		"style": {
 			"begin": "^(style)$",
-			"beginCaptures": {
-				"1": {
-					"name": "support.constant"
-				}
-			},
 			"patterns": [
 				{
 					"match": "(\t)+(.)+",
@@ -110,9 +100,6 @@
 		"model": {
 			"begin": "^(model):((\\p{L})+)",
 			"beginCaptures": {
-				"1": {
-					"name": "support.constant"
-				},
 				"2": {
 					"name": "entity.name.function"
 				}
