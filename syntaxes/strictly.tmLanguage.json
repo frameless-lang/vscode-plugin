@@ -45,7 +45,11 @@
 			"match": "^(\t)+#\\p{Ll}+($|(.)*)",
 			"captures": {
 				"2": {
-					"name": "comment"
+					"patterns": [
+						{
+							"include": "#invalid"
+						}
+					]
 				}
 			}
 		},
@@ -87,7 +91,7 @@
 										"3": {
 											"patterns": [
 												{
-													"include": "#invalid"
+													"include": "#righthandside"
 												}
 											]
 										}
@@ -106,8 +110,7 @@
 			"begin": "^(style)$",
 			"patterns": [
 				{
-					"match": "(\t)+(.)+",
-					"name": "comment"
+					"include": "#invalid"
 				}
 			],
 			"end": "^(?=\\p{L})"
@@ -125,6 +128,47 @@
 				}
 			],
 			"end": "(?=^\\p{L})"
+		},
+		"righthandside": {
+			"match": "((.)+)",
+			"captures": {
+				"1": {
+					"patterns": [
+						{
+							"comment": "functionDefinition",
+							"match": "((.)*)(->)\\s((.)+)",
+							"captures": {
+								"1": {
+									"patterns": [
+										{
+											"begin": "",
+											"while": "\\s,\\s",
+											"patterns": [
+												{
+													"include": "#invalid"
+												}
+											]
+										}
+									]
+								},
+								"3": {
+									"name": "entity.name.function"
+								},
+								"4": {
+									"patterns": [
+										{
+											"include": "#righthandside"
+										}
+									]
+								}
+							}
+						},
+						{
+							"include": "#invalid"
+						}
+					]
+				}
+			}
 		},
 		"invalid": {
 			"match": "(.)+",
