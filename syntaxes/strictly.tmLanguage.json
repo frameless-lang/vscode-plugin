@@ -74,10 +74,25 @@
 			"end": "(\t)*}",
 			"patterns": [
 				{
-					"match": "(\t)*((=?})|(.))",
+					"match": "(\t)*((.)+)",
 					"captures": {
-						"4": {
+						"2": {
 							"patterns": [
+								{
+									"match": "((\\p{L})+)\\s*=\\s((.)+)$",
+									"captures": {
+										"1": {
+											"name": "entity.other.attribute-name"
+										},
+										"3": {
+											"patterns": [
+												{
+													"include": "#invalid"
+												}
+											]
+										}
+									}
+								},
 								{
 									"include": "#invalid"
 								}
