@@ -20,7 +20,15 @@
 			"begin": "^view$",
 			"patterns": [
 				{
-					"include": "#view-helpers"
+					"include": "#view-content"
+				}
+			],
+			"end": "(?=^\\p{L})"
+		},
+		"view-content": {
+			"patterns": [
+				{
+					"include": "#view-helper"
 				},
 				{
 					"include": "#view-hostelement"
@@ -38,40 +46,41 @@
 					"include": "#invalid"
 				}
 			],
-			"end": "(?=^\\p{L})"
-		},
-		"view-helpers": {
-			"name": "keyword.control",
-			"match": "^(\t)+#\\p{Ll}+($|(.)*)",
-			"captures": {
-				"2": {
+			"repository": {
+				"view-helper": {
+					"name": "keyword.control",
+					"match": "^(\t)+#\\p{Ll}+($|(.)*)",
+					"captures": {
+						"2": {
+							"patterns": [
+								{
+									"include": "#invalid"
+								}
+							]
+						}
+					}
+				},
+				"view-hostelement": {
+					"name": "entity.name.tag",
+					"match": "^(\t)+((\\p{Ll})+:)?(\\p{Ll})+($|(?={))"
+				},
+				"view-component": {
+					"name": "entity.name.type",
+					"match": "^(\t)+(\\p{Ll})+(\\p{Pd}(\\p{Ll})+)+($|(?={))"
+				},
+				"view-string": {
+					"name": "string.quoted.double",
+					"begin": "^(\t)+\"",
+					"end": "\"",
 					"patterns": [
 						{
-							"include": "#invalid"
+							"begin": "\\$\\{",
+							"end": "\\}",
+							"name": "variable"
 						}
 					]
 				}
 			}
-		},
-		"view-hostelement": {
-			"name": "entity.name.tag",
-			"match": "^(\t)+((\\p{Ll})+:)?(\\p{Ll})+($|(?={))"
-		},
-		"view-component": {
-			"name": "entity.name.type",
-			"match": "^(\t)+(\\p{Ll})+(\\p{Pd}(\\p{Ll})+)+($|(?={))"
-		},
-		"view-string": {
-			"name": "string.quoted.double",
-			"begin": "^(\t)+\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"begin": "\\$\\{",
-					"end": "\\}",
-					"name": "variable"
-				}
-			]
 		},
 		"options": {
 			"begin": "{\\s*",
@@ -130,43 +139,43 @@
 			"end": "(?=^\\p{L})"
 		},
 		"righthandside": {
-			"match": "((.)+)",
-			"captures": {
-				"1": {
-					"patterns": [
-						{
-							"comment": "functionDefinition",
-							"match": "((.)*)(->)\\s((.)+)",
-							"captures": {
-								"1": {
+			"patterns": [
+				{
+					"include": "#righthandside-functiondefinition"
+				},
+				{
+					"include": "#invalid"
+				}
+			],
+			"repository": {
+				"righthandside-functiondefinition": {
+					"comment": "functionDefinition",
+					"match": "((.)*)(->)\\s((.)+)",
+					"captures": {
+						"1": {
+							"patterns": [
+								{
+									"begin": "",
+									"while": ",",
 									"patterns": [
 										{
-											"begin": "",
-											"while": ",",
-											"patterns": [
-												{
-													"include": "#lefthandside"
-												}
-											]
-										}
-									]
-								},
-								"3": {
-									"name": "entity.name.function"
-								},
-								"4": {
-									"patterns": [
-										{
-											"include": "#righthandside"
+											"include": "#lefthandside"
 										}
 									]
 								}
-							}
+							]
 						},
-						{
-							"include": "#invalid"
+						"3": {
+							"name": "entity.name.function"
+						},
+						"4": {
+							"patterns": [
+								{
+									"include": "#righthandside"
+								}
+							]
 						}
-					]
+					}
 				}
 			}
 		},
@@ -177,7 +186,8 @@
 				},
 				{
 					"include": "#lefthandside-variable"
-				}, {
+				},
+				{
 					"include": "#invalid"
 				}
 			],
