@@ -142,10 +142,10 @@
 									"patterns": [
 										{
 											"begin": "",
-											"while": "\\s,\\s",
+											"while": ",",
 											"patterns": [
 												{
-													"include": "#invalid"
+													"include": "#lefthandside"
 												}
 											]
 										}
@@ -167,6 +167,28 @@
 							"include": "#invalid"
 						}
 					]
+				}
+			}
+		},
+		"lefthandside": {
+			"patterns": [
+				{
+					"include": "#lefthandside-hole"
+				},
+				{
+					"include": "#lefthandside-variable"
+				}, {
+					"include": "#invalid"
+				}
+			],
+			"repository": {
+				"lefthandside-hole": {
+					"match": "_",
+					"name": "comment"
+				},
+				"lefthandside-variable": {
+					"match": "\\p{L}+",
+					"name": "variable.parameter"
 				}
 			}
 		},
