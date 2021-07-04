@@ -6,6 +6,9 @@
 			"include": "#view"
 		},
 		{
+			"include": "#model"
+		},
+		{
 			"include": "#style"
 		},
 		{
@@ -17,7 +20,7 @@
 			"begin": "^(view)$",
 			"beginCaptures": {
 				"1": {
-					"name": "support.class"
+					"name": "support.constant"
 				}
 			},
 			"patterns": [
@@ -34,7 +37,7 @@
 					"include": "#options"
 				},
 				{
-					"include": "#strings"
+					"include": "#view-string"
 				},
 				{
 					"include": "#invalid"
@@ -56,19 +59,44 @@
 			"match": "^(\t)+((\\p{Ll})+:)?(\\p{Ll})+($|(?={))"
 		},
 		"view-component": {
-			"name": "entity.name.function",
+			"name": "entity.name.type",
 			"match": "^(\t)+(\\p{Ll})+(\\p{Pd}(\\p{Ll})+)+($|(?={))"
+		},
+		"view-string": {
+			"name": "string.quoted.double",
+			"begin": "^(\t)+\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"begin": "\\$\\{",
+					"end": "\\}",
+					"name": "variable"
+				}
+			]
 		},
 		"options": {
 			"begin": "{\\s*",
-			"end": "}",
-			"patterns": []
+			"end": "(\t)*}",
+			"patterns": [
+				{
+					"match": "(\t)*((=?})|(.))",
+					"captures": {
+						"4": {
+							"patterns": [
+								{
+									"include": "#invalid"
+								}
+							]
+						}
+					}
+				}
+			]
 		},
 		"style": {
 			"begin": "^(style)$",
 			"beginCaptures": {
 				"1": {
-					"name": "support.class"
+					"name": "support.constant"
 				}
 			},
 			"patterns": [
@@ -79,17 +107,22 @@
 			],
 			"end": "^(?=\\p{L})"
 		},
-		"strings": {
-			"name": "string.quoted.double.strictly",
-			"begin": "^(\t)+\"",
-			"end": "\"",
+		"model": {
+			"begin": "^(model):((\\p{L})+)",
+			"beginCaptures": {
+				"1": {
+					"name": "support.constant"
+				},
+				"2": {
+					"name": "entity.name.function"
+				}
+			},
 			"patterns": [
 				{
-					"begin": "\\$\\{",
-					"end": "\\}",
-					"name": "variable"
+					"include": "#options"
 				}
-			]
+			],
+			"end": "(?=^\\p{L})"
 		},
 		"invalid": {
 			"match": "(.)+",
