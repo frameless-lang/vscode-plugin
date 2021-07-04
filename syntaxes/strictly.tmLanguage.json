@@ -22,22 +22,31 @@
 			},
 			"patterns": [
 				{
-					"include": "#view-helpers"
-				},
-				{
-					"include": "#view-hostelement"
-				},
-				{
-					"include": "#view-component"
-				},
-				{
-					"include": "#strings"
-				},
-				{
-					"include": "#invalid"
+					"match": "^(([\t])+)((.)+)",
+					"captures": {
+						"3": {
+							"patterns": [
+								{
+									"include": "#view-helpers"
+								},
+								{
+									"include": "#view-hostelement"
+								},
+								{
+									"include": "#view-component"
+								},
+								{
+									"include": "#strings"
+								},
+								{
+									"include": "#invalid"
+								}
+							]
+						}
+					}
 				}
 			],
-			"while": "^((\t)+|\n)"
+			"end": "^(?=\\p{L})"
 		},
 		"view-helpers": {
 			"name": "keyword.control",
@@ -57,12 +66,19 @@
 			"match": "(\\p{Ll})+(\\p{Pd}(\\p{Ll})+)+(\\s|$|(?={))"
 		},
 		"style": {
-			"patterns": [
-				{
-					"match": "^style$",
+			"begin": "^(style)$",
+			"beginCaptures": {
+				"1": {
 					"name": "support.class"
 				}
-			]
+			},
+			"patterns": [
+				{
+					"match": "(.)+",
+					"name": "comment"
+				}
+			],
+			"end": "^(?=\\p{L})"
 		},
 		"strings": {
 			"name": "string.quoted.double.strictly",
