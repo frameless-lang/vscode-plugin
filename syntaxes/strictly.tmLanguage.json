@@ -66,7 +66,7 @@
 				},
 				"view-component": {
 					"name": "entity.name.type",
-					"match": "^(\t)+(\\p{Ll})+(\\p{Pd}(\\p{Ll})+)+($|(?={))"
+					"match": "^(\t)+(\\p{Ll}|\\.)+(\\p{Pd}(\\p{Ll})+)+($|(?={))"
 				},
 				"view-string": {
 					"begin": "^(\t)+\"",
@@ -75,10 +75,13 @@
 						{
 							"begin": "\\$\\{",
 							"end": "\\}",
-							"patterns": [{
-								"include": "#righthandside"
-							}]
-						}, {
+							"patterns": [
+								{
+									"include": "#righthandside"
+								}
+							]
+						},
+						{
 							"name": "string.quoted.double",
 							"match": "."
 						}
@@ -151,6 +154,9 @@
 					"include": "#righthandside-variable"
 				},
 				{
+					"include": "#righthandside-agb"
+				},
+				{
 					"include": "#invalid"
 				}
 			],
@@ -184,8 +190,12 @@
 						}
 					}
 				},
+				"righthandside-agb": {
+					"match": "(\\p{Uppercase_Letter}(\\p{Letter})*)",
+					"name": "entity.name.type"
+				},
 				"righthandside-variable": {
-					"match": "(\\p{Ll}(\\p{L})*)",
+					"match": "(\\p{Lowercase_Letter}(\\p{Letter})*)",
 					"name": "variable"
 				}
 			}
@@ -194,6 +204,9 @@
 			"patterns": [
 				{
 					"include": "#lefthandside-hole"
+				},
+				{
+					"include": "#lefthandside-agb"
 				},
 				{
 					"include": "#lefthandside-variable"
@@ -207,9 +220,13 @@
 					"match": "_",
 					"name": "comment"
 				},
+				"lefthandside-agb": {
+					"match": "(\\p{Uppercase_Letter}(\\p{Letter})*)",
+					"name": "entity.name.type"
+				},
 				"lefthandside-variable": {
-					"match": "\\p{L}+",
-					"name": "variable.parameter"
+					"match": "(\\p{Lowercase_Letter}(\\p{Letter})*)",
+					"name": "variable"
 				}
 			}
 		},
