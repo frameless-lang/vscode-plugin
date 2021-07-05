@@ -69,14 +69,18 @@
 					"match": "^(\t)+(\\p{Ll})+(\\p{Pd}(\\p{Ll})+)+($|(?={))"
 				},
 				"view-string": {
-					"name": "string.quoted.double",
 					"begin": "^(\t)+\"",
 					"end": "\"",
 					"patterns": [
 						{
 							"begin": "\\$\\{",
 							"end": "\\}",
-							"name": "variable"
+							"patterns": [{
+								"include": "#righthandside"
+							}]
+						}, {
+							"name": "string.quoted.double",
+							"match": "."
 						}
 					]
 				}
@@ -144,6 +148,9 @@
 					"include": "#righthandside-functiondefinition"
 				},
 				{
+					"include": "#righthandside-variable"
+				},
+				{
 					"include": "#invalid"
 				}
 			],
@@ -176,6 +183,10 @@
 							]
 						}
 					}
+				},
+				"righthandside-variable": {
+					"match": "(\\p{Ll}(\\p{L})*)",
+					"name": "variable"
 				}
 			}
 		},
@@ -203,7 +214,7 @@
 			}
 		},
 		"invalid": {
-			"match": "(.)+",
+			"match": "(.)",
 			"name": "invalid.illegal"
 		}
 	},
