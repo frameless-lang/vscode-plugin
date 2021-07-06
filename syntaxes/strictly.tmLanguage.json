@@ -131,33 +131,16 @@
 					"match": "^(\t)+(\\p{Ll}|\\.)+(\\p{Pd}(\\p{Ll})+)+($|(?={))"
 				},
 				"view-string": {
-					"begin": "^(\t)+(\")",
-					"beginCaptures": {
+					"match": "^(\t)+(?=\")((.)*)",
+					"captures": {
 						"2": {
-							"name": "string.quoted.double"
-						}
-					},
-					"end": "(\")",
-					"endCaptures": {
-						"1": {
-							"name": "string.quoted.double"
-						}
-					},
-					"patterns": [
-						{
-							"begin": "\\$\\{",
-							"end": "\\}",
 							"patterns": [
 								{
-									"include": "#righthandside"
+									"include": "#string"
 								}
 							]
-						},
-						{
-							"name": "string.quoted.double",
-							"match": "."
 						}
-					]
+					}
 				}
 			}
 		},
@@ -171,7 +154,7 @@
 						"2": {
 							"patterns": [
 								{
-									"match": "((\\p{L})+)\\s*=\\s((.)+)$",
+									"match": "((\\p{L})+)\\s*=\\s?((.)+)$",
 									"captures": {
 										"1": {
 											"name": "entity.other.attribute-name"
@@ -229,6 +212,12 @@
 					"include": "#righthandside-agb"
 				},
 				{
+					"include": "#righthandside-number"
+				},
+				{
+					"include": "#string"
+				},
+				{
 					"include": "#invalid"
 				}
 			],
@@ -270,6 +259,10 @@
 					"comment": "variables start with a lowercase character and can have any amount of characters afterwards, it can have any amount of dots for nested variables",
 					"match": "(\\p{Lowercase_Letter}(\\p{Letter})*)(\\.\\p{Lowercase_Letter}(\\p{Letter})*)*",
 					"name": "variable"
+				},
+				"righthandside-number": {
+					"match": "(\\d)+(.(\\d)+)?",
+					"name": "constant.numeric"
 				}
 			}
 		},
@@ -302,6 +295,35 @@
 					"name": "variable"
 				}
 			}
+		},
+		"string": {
+			"begin": "(\")",
+			"beginCaptures": {
+				"1": {
+					"name": "string.quoted.double"
+				}
+			},
+			"end": "(\")",
+			"endCaptures": {
+				"1": {
+					"name": "string.quoted.double"
+				}
+			},
+			"patterns": [
+				{
+					"begin": "\\$\\{",
+					"end": "\\}",
+					"patterns": [
+						{
+							"include": "#righthandside"
+						}
+					]
+				},
+				{
+					"name": "string.quoted.double",
+					"match": "."
+				}
+			]
 		},
 		"invalid": {
 			"match": "(.)",
