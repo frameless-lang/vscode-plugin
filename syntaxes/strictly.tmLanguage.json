@@ -48,11 +48,73 @@
 			],
 			"repository": {
 				"view-helper": {
-					"name": "keyword.control",
-					"match": "^(\t)+#\\p{Ll}+($|(.)*)",
+					"match": "^(\t)+(#)((.)*)",
 					"captures": {
 						"2": {
+							"name": "keyword.control"
+						},
+						"3": {
 							"patterns": [
+								{
+									"match": "(if)\\s((.)*)",
+									"captures": {
+										"1": {
+											"name": "keyword.control"
+										},
+										"2": {
+											"patterns": [
+												{
+													"include": "#righthandside"
+												}
+											]
+										}
+									}
+								},
+								{
+									"match": "(match)\\s((.)*)",
+									"captures": {
+										"1": {
+											"name": "keyword.control"
+										},
+										"2": {
+											"patterns": [
+												{
+													"include": "#righthandside"
+												}
+											]
+										}
+									}
+								},
+								{
+									"match": "(case)\\s((.)*)",
+									"captures": {
+										"1": {
+											"name": "keyword.control"
+										},
+										"2": {
+											"patterns": [
+												{
+													"include": "#lefthandside"
+												}
+											]
+										}
+									}
+								},
+								{
+									"match": "(else)(\\s((.)*))?",
+									"captures": {
+										"1": {
+											"name": "keyword.control"
+										},
+										"3": {
+											"patterns": [
+												{
+													"include": "#invalid"
+												}
+											]
+										}
+									}
+								},
 								{
 									"include": "#invalid"
 								}
