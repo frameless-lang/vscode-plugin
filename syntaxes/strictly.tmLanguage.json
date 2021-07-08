@@ -154,7 +154,7 @@
 						"2": {
 							"patterns": [
 								{
-									"match": "((\\p{L})+)\\s*=\\s?((.)+)$",
+									"match": "((\\p{L})+)\\s*=\\s*((.)+)$",
 									"captures": {
 										"1": {
 											"name": "entity.other.attribute-name"
@@ -227,7 +227,7 @@
 			"repository": {
 				"righthandside-functiondefinition": {
 					"comment": "functionDefinition",
-					"match": "((.)*)(->)\\s((.)+)",
+					"match": "((.)*)(->)\\s*((.)+)",
 					"captures": {
 						"1": {
 							"patterns": [
