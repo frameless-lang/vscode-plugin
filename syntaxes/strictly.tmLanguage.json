@@ -212,6 +212,9 @@
 					"include": "#righthandside-variable"
 				},
 				{
+					"include": "#righthandside-agbwithparameters"
+				},
+				{
 					"include": "#righthandside-agb"
 				},
 				{
@@ -254,6 +257,20 @@
 						}
 					}
 				},
+				"righthandside-agbwithparameters": {
+					"begin": "(\\p{Uppercase_Letter}(\\p{Letter})*)\\(",
+					"captures": {
+						"1": {
+							"name": "entity.name.type"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#righthandside"
+						}
+					],
+					"end": "\\)"
+				},
 				"righthandside-agb": {
 					"match": "(\\p{Uppercase_Letter}(\\p{Letter})*)",
 					"name": "entity.name.type"
@@ -293,6 +310,9 @@
 					"include": "#lefthandside-hole"
 				},
 				{
+					"include": "#lefthandside-agbwithparameters"
+				},
+				{
 					"include": "#lefthandside-agb"
 				},
 				{
@@ -306,6 +326,20 @@
 				"lefthandside-hole": {
 					"match": "_",
 					"name": "comment"
+				},
+				"lefthandside-agbwithparameters": {
+					"begin": "(\\p{Uppercase_Letter}(\\p{Letter})*)\\(",
+					"captures": {
+						"1": {
+							"name": "entity.name.type"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#lefthandside"
+						}
+					],
+					"end": "\\)"
 				},
 				"lefthandside-agb": {
 					"match": "(\\p{Uppercase_Letter}(\\p{Letter})*)",
