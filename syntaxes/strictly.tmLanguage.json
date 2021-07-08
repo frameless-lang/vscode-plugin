@@ -206,6 +206,9 @@
 					"include": "#righthandside-functiondefinition"
 				},
 				{
+					"include": "#righthandside-functioncall"
+				},
+				{
 					"include": "#righthandside-variable"
 				},
 				{
@@ -254,6 +257,24 @@
 				"righthandside-agb": {
 					"match": "(\\p{Uppercase_Letter}(\\p{Letter})*)",
 					"name": "entity.name.type"
+				},
+				"righthandside-functioncall": {
+					"comment": "functioncall can start with a variable",
+					"begin": "(((\\p{Lowercase_Letter}(\\p{Letter})*)\\.)*)(\\p{Lowercase_Letter}(\\p{Letter})*)\\(",
+					"beginCaptures": {
+						"2": {
+							"name": "variable"
+						},
+						"5": {
+							"name": "entity.name.function"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#righthandside"
+						}
+					],
+					"end": "\\)"
 				},
 				"righthandside-variable": {
 					"comment": "variables start with a lowercase character and can have any amount of characters afterwards, it can have any amount of dots for nested variables",
