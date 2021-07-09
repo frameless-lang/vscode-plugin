@@ -159,7 +159,7 @@
 						"2": {
 							"patterns": [
 								{
-									"match": "((\\p{L})+)\\s*=\\s*((.)+)$",
+									"match": "((\\p{L})+\\*?)\\s*=\\s*((.)+)$",
 									"captures": {
 										"1": {
 											"name": "entity.other.attribute-name"
@@ -385,8 +385,12 @@
 					"name": "entity.name.type"
 				},
 				"lefthandside-variable": {
-					"match": "(\\p{Lowercase_Letter}(\\p{Letter})*)",
-					"name": "variable"
+					"match": "(\\p{Lowercase_Letter}(\\p{Letter})*)@?",
+					"captures": {
+						"1": {
+							"name": "variable"
+						}
+					}
 				},
 				"lefthandside-tuple": {
 					"begin": "\\(",
