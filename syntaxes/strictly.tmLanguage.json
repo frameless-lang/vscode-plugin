@@ -56,22 +56,7 @@
 						"3": {
 							"patterns": [
 								{
-									"match": "(if)\\s((.)*)",
-									"captures": {
-										"1": {
-											"name": "keyword.control"
-										},
-										"2": {
-											"patterns": [
-												{
-													"include": "#righthandside"
-												}
-											]
-										}
-									}
-								},
-								{
-									"match": "(match)\\s((.)*)",
+									"match": "(if|match)\\s((.)*)",
 									"captures": {
 										"1": {
 											"name": "keyword.control"
@@ -116,7 +101,7 @@
 									}
 								},
 								{
-									"match": "(model)\\s+(((.)*))",
+									"match": "(model|each)\\s+(((.)*))",
 									"captures": {
 										"1": {
 											"name": "keyword.control"
