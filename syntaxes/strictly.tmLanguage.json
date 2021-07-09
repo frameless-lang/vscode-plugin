@@ -17,7 +17,12 @@
 	],
 	"repository": {
 		"view": {
-			"begin": "^view$",
+			"begin": "^(view)$",
+			"beginCaptures": {
+				"1": {
+					"name": "string.regexp"
+				}
+			},
 			"patterns": [
 				{
 					"include": "#view-content"
@@ -198,6 +203,11 @@
 		},
 		"style": {
 			"begin": "^(style)$",
+			"beginCaptures": {
+				"1": {
+					"name": "string.regexp"
+				}
+			},
 			"patterns": [
 				{
 					"include": "#invalid"
@@ -208,6 +218,9 @@
 		"model": {
 			"begin": "^(model):((\\p{L})+)",
 			"beginCaptures": {
+				"1": {
+					"name": "string.regexp"
+				},
 				"2": {
 					"name": "entity.name.function"
 				}
@@ -243,10 +256,17 @@
 					"include": "#string"
 				},
 				{
+					"include": "#righthandside-operator"
+				},
+				{
 					"include": "#invalid"
 				}
 			],
 			"repository": {
+				"righthandside-operator": {
+					"match": "(\\+|-|\\\\|\\*)",
+					"name": "keyword.operator"
+				},
 				"righthandside-functiondefinition": {
 					"comment": "functionDefinition",
 					"match": "((.)*)(->)\\s*((.)+)",
@@ -295,7 +315,7 @@
 					"comment": "functioncall can start with a variable",
 					"begin": "(((\\p{Lowercase_Letter}(\\p{Letter})*)\\.)*)(\\p{Lowercase_Letter}(\\p{Letter})*)\\(",
 					"beginCaptures": {
-						"2": {
+						"1": {
 							"name": "variable"
 						},
 						"5": {
@@ -397,8 +417,18 @@
 			},
 			"patterns": [
 				{
-					"begin": "\\$\\{",
-					"end": "\\}",
+					"begin": "(\\$\\{)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.template-expression.begin"
+						}
+					},
+					"end": "(\\})",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.template-expression.end"
+						}
+					},
 					"patterns": [
 						{
 							"include": "#righthandside"
