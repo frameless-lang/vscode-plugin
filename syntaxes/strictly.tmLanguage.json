@@ -116,6 +116,21 @@
 									}
 								},
 								{
+									"match": "(model)\\s+(((.)*))",
+									"captures": {
+										"1": {
+											"name": "keyword.control"
+										},
+										"3": {
+											"patterns": [
+												{
+													"include": "#feedfrom"
+												}
+											]
+										}
+									}
+								},
+								{
 									"include": "#invalid"
 								}
 							]
@@ -177,6 +192,25 @@
 				}
 			]
 		},
+		"feedfrom": {
+			"match": "((.)*)(<-)\\s*((.)*)",
+			"captures": {
+				"1": {
+					"patterns": [
+						{
+							"include": "#lefthandside"
+						}
+					]
+				},
+				"4": {
+					"patterns": [
+						{
+							"include": "#righthandside"
+						}
+					]
+				}
+			}
+		},
 		"style": {
 			"begin": "^(style)$",
 			"patterns": [
@@ -235,13 +269,10 @@
 						"1": {
 							"patterns": [
 								{
-									"begin": "",
-									"while": ",",
-									"patterns": [
-										{
-											"include": "#lefthandside"
-										}
-									]
+									"match": ","
+								},
+								{
+									"include": "#lefthandside"
 								}
 							]
 						},
@@ -319,6 +350,9 @@
 					"include": "#lefthandside-variable"
 				},
 				{
+					"include": "#lefthandside-tuple"
+				},
+				{
 					"include": "#invalid"
 				}
 			],
@@ -348,6 +382,18 @@
 				"lefthandside-variable": {
 					"match": "(\\p{Lowercase_Letter}(\\p{Letter})*)",
 					"name": "variable"
+				},
+				"lefthandside-tuple": {
+					"begin": "\\(",
+					"patterns": [
+						{
+							"match": ","
+						},
+						{
+							"include": "#lefthandside"
+						}
+					],
+					"end": "\\)"
 				}
 			}
 		},
