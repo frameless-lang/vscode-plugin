@@ -198,9 +198,12 @@
 			]
 		},
 		"feedfromRightHandSide": {
-			"match": "\\\\((.)*)(<-)\\s*((.)*)",
+			"match": "(\\\\)((.)*)(<-)\\s*((.)*)",
 			"captures": {
 				"1": {
+					"name": "entity.name.function"
+				},
+				"2": {
 					"patterns": [
 						{
 							"include": "#lefthandside"
@@ -208,6 +211,9 @@
 					]
 				},
 				"4": {
+					"name": "entity.name.function"
+				},
+				"5": {
 					"patterns": [
 						{
 							"include": "#righthandside"
@@ -217,9 +223,12 @@
 			}
 		},
 		"feedfromHost": {
-			"match": "\\\\((.)*)(<-)\\s*((.)*)",
+			"match": "(\\\\)((.)*)(<-)\\s*((.)*)",
 			"captures": {
 				"1": {
+					"name": "entity.name.function"
+				},
+				"2": {
 					"patterns": [
 						{
 							"include": "#lefthandside"
@@ -227,6 +236,9 @@
 					]
 				},
 				"4": {
+					"name": "entity.name.function"
+				},
+				"5": {
 					"patterns": [
 						{
 							"name": "entity.name.tag",
