@@ -183,7 +183,7 @@
 			]
 		},
 		"feedfrom": {
-			"match": "((.)*)(<-)\\s*((.)*)",
+			"match": "\\\\((.)*)(<-)\\s*((.)*)",
 			"captures": {
 				"1": {
 					"patterns": [
@@ -269,27 +269,24 @@
 				},
 				"righthandside-functiondefinition": {
 					"comment": "functionDefinition",
-					"match": "((.)*)(->)\\s*((.)+)",
-					"captures": {
+					"begin": "(/)",
+					"beginCaptures": {
 						"1": {
-							"patterns": [
-								{
-									"match": ","
-								},
-								{
-									"include": "#lefthandside"
-								}
-							]
-						},
-						"3": {
 							"name": "entity.name.function"
+						}
+					},
+					"patterns": [
+						{
+							"match": ","
 						},
-						"4": {
-							"patterns": [
-								{
-									"include": "#righthandside"
-								}
-							]
+						{
+							"include": "#lefthandside"
+						}
+					],
+					"end": "(->)|$",
+					"endCaptures": {
+						"1": {
+							"name": "entity.name.function"
 						}
 					}
 				},
