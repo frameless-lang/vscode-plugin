@@ -114,7 +114,22 @@
 										"3": {
 											"patterns": [
 												{
-													"include": "#feedfrom"
+													"include": "#feedfromRightHandSide"
+												}
+											]
+										}
+									}
+								},
+								{
+									"match": "(context)\\s+(((.)*))",
+									"captures": {
+										"1": {
+											"name": "keyword.control"
+										},
+										"3": {
+											"patterns": [
+												{
+													"include": "#feedfromHost"
 												}
 											]
 										}
@@ -182,7 +197,7 @@
 				}
 			]
 		},
-		"feedfrom": {
+		"feedfromRightHandSide": {
 			"match": "\\\\((.)*)(<-)\\s*((.)*)",
 			"captures": {
 				"1": {
@@ -196,6 +211,33 @@
 					"patterns": [
 						{
 							"include": "#righthandside"
+						}
+					]
+				}
+			}
+		},
+		"feedfromHost": {
+			"match": "\\\\((.)*)(<-)\\s*((.)*)",
+			"captures": {
+				"1": {
+					"patterns": [
+						{
+							"include": "#lefthandside"
+						}
+					]
+				},
+				"4": {
+					"patterns": [
+						{
+							"name": "entity.name.tag",
+							"match": "((\\p{Ll})+:)?(\\p{Ll})+($|(?={))"
+						},
+						{
+							"name": "entity.name.type",
+							"match": "(\\p{Ll}|\\.)+(\\p{Pd}(\\p{Ll})+)+($|(?={))"
+						},
+						{
+							"include": "#invalid"
 						}
 					]
 				}
