@@ -174,7 +174,7 @@
 						"2": {
 							"patterns": [
 								{
-									"match": "((\\p{L})+)(\\*|(\\?((\\p{L})+)))?\\s*=\\s*((.)+)$",
+									"match": "((\\p{L})+)\\s*(\\*|(\\?\\s*((\\p{L})+)))?\\s*=\\s*((.)+)$",
 									"captures": {
 										"1": {
 											"name": "entity.other.attribute-name"
