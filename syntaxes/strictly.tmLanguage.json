@@ -174,12 +174,15 @@
 						"2": {
 							"patterns": [
 								{
-									"match": "((\\p{L})+\\*?)\\s*=\\s*((.)+)$",
+									"match": "((\\p{L})+)(\\*|(\\?((\\p{L})+)))?\\s*=\\s*((.)+)$",
 									"captures": {
 										"1": {
 											"name": "entity.other.attribute-name"
 										},
-										"3": {
+										"5": {
+											"name": "string.quoted.double"
+										},
+										"7": {
 											"patterns": [
 												{
 													"include": "#righthandside"
