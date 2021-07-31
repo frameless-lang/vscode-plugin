@@ -174,15 +174,15 @@
 						"2": {
 							"patterns": [
 								{
-									"match": "((\\p{L})+)\\s*(\\*|(\\?\\s*((\\p{L})+)))?\\s*=\\s*((.)+)$",
+									"match": "(((\\p{L})+)(-\\p{L}+)*)\\s*(\\*|(\\?\\s*((\\p{L})+)))?\\s*=\\s*((.)+)$",
 									"captures": {
 										"1": {
 											"name": "entity.other.attribute-name"
 										},
-										"5": {
+										"7": {
 											"name": "string.quoted.double"
 										},
-										"7": {
+										"9": {
 											"patterns": [
 												{
 													"include": "#righthandside"
@@ -266,6 +266,13 @@
 				}
 			},
 			"patterns": [
+				{
+					"match": "((\\.|#)?\\p{Ll}+)",
+					"name": "entity.name.tag.css meta.selector.css source.css"
+				},
+				{
+					"include": "#options"
+				},
 				{
 					"include": "#invalid"
 				}
