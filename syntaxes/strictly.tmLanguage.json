@@ -313,6 +313,10 @@
 				{
 					"include": "#righthandside-agb"
 				},
+
+				{
+					"include": "#righthandside-list"
+				},
 				{
 					"include": "#righthandside-number"
 				},
@@ -363,6 +367,9 @@
 					},
 					"patterns": [
 						{
+							"match": ","
+						},
+						{
 							"include": "#righthandside"
 						}
 					],
@@ -371,6 +378,18 @@
 				"righthandside-agb": {
 					"match": "(\\p{Uppercase_Letter}(\\p{Letter})*)",
 					"name": "entity.name.type"
+				},
+				"righthandside-list": {
+					"begin": "\\[",
+					"patterns": [
+						{
+							"match": ","
+						},
+						{
+							"include": "#righthandside"
+						}
+					],
+					"end": "\\]"
 				},
 				"righthandside-functioncall": {
 					"comment": "functioncall can start with a variable",
