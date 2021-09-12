@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: release build
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+
+      - name: Install Dependencies
+        run: yarn install
+
+
+      - name: Package
+        run: npx vsce package
+
+      - name: Version
+        run: npx semantic-release
+
+      - name: Publish
+        run: npx vsce publish --yarn
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
