@@ -24,10 +24,7 @@ jobs:
       - name: Package
         run: npx vsce package
 
-      - name: Version
+      - name: Release
         run: npx semantic-release
-
-      - name: Publish
-        run: npx vsce publish --yarn
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
