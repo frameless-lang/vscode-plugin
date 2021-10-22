@@ -115,6 +115,9 @@
 											"patterns": [
 												{
 													"include": "#feedfromRightHandSide"
+												},
+												{
+													"include": "#righthandside"
 												}
 											]
 										}
@@ -201,7 +204,7 @@
 			]
 		},
 		"feedfromRightHandSide": {
-			"match": "(\\\\)((.)*)(<-)\\s*((.)*)",
+			"match": "(\\\\)((.)*?)(<-)\\s*",
 			"captures": {
 				"1": {
 					"name": "entity.name.function"
@@ -215,13 +218,6 @@
 				},
 				"4": {
 					"name": "entity.name.function"
-				},
-				"5": {
-					"patterns": [
-						{
-							"include": "#righthandside"
-						}
-					]
 				}
 			}
 		},
@@ -313,9 +309,11 @@
 				{
 					"include": "#righthandside-agb"
 				},
-
 				{
 					"include": "#righthandside-list"
+				},
+				{
+					"include": "#righthandside-tuple"
 				},
 				{
 					"include": "#righthandside-number"
@@ -386,10 +384,28 @@
 							"match": ","
 						},
 						{
+							"match": "\\|"
+						},
+						{
+							"include": "#feedfromRightHandSide"
+						},
+						{
 							"include": "#righthandside"
 						}
 					],
 					"end": "\\]"
+				},
+				"righthandside-tuple": {
+					"begin": "<",
+					"patterns": [
+						{
+							"match": ","
+						},
+						{
+							"include": "#righthandside"
+						}
+					],
+					"end": "\\>"
 				},
 				"righthandside-functioncall": {
 					"comment": "functioncall can start with a variable",
@@ -434,6 +450,10 @@
 				{
 					"include": "#lefthandside-variable"
 				},
+
+				{
+					"include": "#lefthandside-list"
+				},
 				{
 					"include": "#lefthandside-tuple"
 				},
@@ -472,8 +492,23 @@
 						}
 					}
 				},
+				"lefthandside-list": {
+					"begin": "\\[",
+					"patterns": [
+						{
+							"match": ","
+						},
+						{
+							"match": "\\|"
+						},
+						{
+							"include": "#lefthandside"
+						}
+					],
+					"end": "\\]"
+				},
 				"lefthandside-tuple": {
-					"begin": "\\(",
+					"begin": "<",
 					"patterns": [
 						{
 							"match": ","
@@ -482,7 +517,7 @@
 							"include": "#lefthandside"
 						}
 					],
-					"end": "\\)"
+					"end": ">"
 				}
 			}
 		},
