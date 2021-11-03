@@ -325,7 +325,7 @@
     lodash "^4.17.4"
     micromatch "^4.0.2"
 
-"@semantic-release/error@^2.1.0", "@semantic-release/error@^2.2.0":
+"@semantic-release/error@^2.2.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@semantic-release/error/-/error-2.2.0.tgz#ee9d5a09c9969eade1ec864776aeda5c5cddbbf0"
 
@@ -3678,9 +3678,9 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vsce@^1.100.2:
-  version "1.100.2"
-  resolved "https://registry.yarnpkg.com/vsce/-/vsce-1.100.2.tgz#c4ed5e87e3aa6341e9941715ce088a2d69a565c1"
+vsce@^1.102.0:
+  version "1.102.0"
+  resolved "https://registry.yarnpkg.com/vsce/-/vsce-1.102.0.tgz#177f449025754989fa8a38f080b40b79a8b945b4"
   dependencies:
     azure-devops-node-api "^11.0.1"
     chalk "^2.4.2"
