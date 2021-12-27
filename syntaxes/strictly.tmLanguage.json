@@ -3,6 +3,9 @@
 	"name": "strictly",
 	"patterns": [
 		{
+			"include": "#data"
+		},
+		{
 			"include": "#elements"
 		},
 		{
@@ -19,6 +22,76 @@
 		}
 	],
 	"repository": {
+		"data": {
+			"patterns": [
+				{
+					"begin": "(data)\\s+",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					},
+					"patterns": [
+						{
+							"match": "(\\p{Uppercase_Letter}(\\p{Letter})*)",
+							"name": "entity.name.type"
+						},
+						{
+							"begin": "=",
+							"patterns": [
+								{
+									"match": "\\|"
+								},
+								{
+									"include": "#algebraic-datatype-with-parameter"
+								},
+								{
+									"include": "#algebraic-datatype-without-parameter"
+								},
+								{
+									"include": "#invalid"
+								}
+							],
+							"end": ";"
+						}
+					],
+					"end": "$"
+				}
+			],
+			"repository": {
+				"algebraic-datatype-with-parameter": {
+					"begin": "(\\p{Uppercase_Letter}(\\p{Letter})*)\\(",
+					"captures": {
+						"1": {
+							"name": "entity.name.type"
+						}
+					},
+					"patterns": [
+						{
+							"match": ","
+						},
+						{
+							"include": "#algebraic-datatype-with-parameter"
+						},
+						{
+							"include": "#algebraic-datatype-without-parameter"
+						},
+						{
+							"include": "#invalid"
+						}
+					],
+					"end": "\\)"
+				},
+				"algebraic-datatype-without-parameter": {
+					"match": "(\\p{Uppercase_Letter}(\\p{Letter})*)",
+					"captures": {
+						"1": {
+							"name": "entity.name.type"
+						}
+					}
+				}
+			}
+		},
 		"elements": {
 			"patterns": [
 				{
@@ -38,7 +111,6 @@
 					"match": "\\$(\\p{Ll}|\\.)+(\\p{Pd}(\\p{Ll})+)+($|(?={))"
 				}
 			}
-
 		},
 		"lefthandside": {
 			"patterns": [
@@ -85,7 +157,7 @@
 					"name": "entity.name.type"
 				},
 				"variable": {
-					"match": "(\\p{Lowercase_Letter}(\\p{Letter})*)@?",
+					"match": "(\\p{Lowercase_Letter}(\\p{Letter})*'*)@?",
 					"captures": {
 						"1": {
 							"name": "variable"
@@ -110,7 +182,7 @@
 			}
 		},
 		"assignment": {
-			"match": "(\\p{Lowercase_Letter}(\\p{Letter})*)\\s*=",
+			"match": "(\\p{Lowercase_Letter}(\\p{Letter})*)\\s*=(?!=)",
 			"captures": {
 				"1": {
 					"name": "variable"
@@ -131,8 +203,18 @@
 			],
 			"repository": {
 				"variable-declaration": {
-					"match": "let",
-					"name": "storage.type"
+					"begin": "(let)\\s+",
+					"captures": {
+						"1:": {
+							"name": "storage.type"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#lefthandside"
+						}
+					],
+					"end": "=|$"
 				},
 				"stream": {
 					"begin": "(\\\\)",
@@ -265,6 +347,9 @@
 						},
 						{
 							"match": "\\|"
+						},
+						{
+							"include": "#statement"
 						},
 						{
 							"include": "#expression"
