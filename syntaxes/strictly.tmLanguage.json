@@ -124,6 +124,9 @@
 					"include": "#algebraic-datatype-without-parameter"
 				},
 				{
+					"include": "#record"
+				},
+				{
 					"include": "#variable"
 				},
 				{
@@ -155,6 +158,18 @@
 				"algebraic-datatype-without-parameter": {
 					"match": "(\\p{Uppercase_Letter}(\\p{Letter})*)",
 					"name": "entity.name.type"
+				},
+				"record": {
+					"begin": "\\{",
+					"patterns": [
+						{
+							"match": ","
+						},
+						{
+							"include": "#lefthandside"
+						}
+					],
+					"end": "\\}"
 				},
 				"variable": {
 					"match": "(\\p{Lowercase_Letter}(\\p{Letter})*'*)@?",
@@ -324,6 +339,12 @@
 				"record": {
 					"begin": "{",
 					"patterns": [
+						{
+							"match": "\\|"
+						},
+						{
+							"match": ","
+						},
 						{
 							"include": "#assignment"
 						},
