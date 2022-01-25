@@ -210,9 +210,6 @@
 					"include": "#variable-declaration"
 				},
 				{
-					"include": "#stream"
-				},
-				{
 					"match": ";"
 				}
 			],
@@ -229,29 +226,7 @@
 							"include": "#lefthandside"
 						}
 					],
-					"end": "=|$"
-				},
-				"stream": {
-					"begin": "(\\\\)",
-					"beginCaptures": {
-						"1": {
-							"name": "entity.name.function"
-						}
-					},
-					"patterns": [
-						{
-							"match": ","
-						},
-						{
-							"include": "#lefthandside"
-						}
-					],
-					"end": "(\\<-)|$",
-					"endCaptures": {
-						"1": {
-							"name": "entity.name.function"
-						}
-					}
+					"end": "=|<-|$"
 				}
 			}
 		},
@@ -297,7 +272,7 @@
 					"name": "keyword.control"
 				},
 				"function-definition": {
-					"begin": "(/)",
+					"begin": "(\\\\)",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.name.function"
