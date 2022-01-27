@@ -1,5 +1,5 @@
 {
-    "name": "strictly",
+    "name": "@strictly/vscode-plugin",
     "displayName": "strictly",
     "publisher": "strictly",
     "description": "strictly langauge support",

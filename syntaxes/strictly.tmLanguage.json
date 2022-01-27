@@ -60,7 +60,7 @@
 			],
 			"repository": {
 				"algebraic-datatype-with-parameter": {
-					"begin": "(\\p{Uppercase_Letter}(\\p{Letter})*)\\(",
+					"begin": "(\\p{Uppercase_Letter}(\\p{Letter})*)\\[",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.name.type"
@@ -71,16 +71,13 @@
 							"match": ","
 						},
 						{
-							"include": "#algebraic-datatype-with-parameter"
-						},
-						{
 							"include": "#algebraic-datatype-without-parameter"
 						},
 						{
 							"include": "#invalid"
 						}
 					],
-					"end": "\\)"
+					"end": "\\]"
 				},
 				"algebraic-datatype-without-parameter": {
 					"match": "(\\p{Uppercase_Letter}(\\p{Letter})*)",
@@ -142,7 +139,7 @@
 					"name": "comment"
 				},
 				"algebraic-datatype-with-parameter": {
-					"begin": "(\\p{Uppercase_Letter}(\\p{Letter})*)\\(",
+					"begin": "(\\p{Uppercase_Letter}(\\p{Letter})*)\\[",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.name.type"
@@ -153,7 +150,7 @@
 							"include": "#lefthandside"
 						}
 					],
-					"end": "\\)"
+					"end": "\\]"
 				},
 				"algebraic-datatype-without-parameter": {
 					"match": "(\\p{Uppercase_Letter}(\\p{Letter})*)",
@@ -357,7 +354,7 @@
 					"end": "\\]"
 				},
 				"algebraic-datatype-with-parameter": {
-					"begin": "(\\p{Uppercase_Letter}(\\p{Letter})*)\\(",
+					"begin": "(\\p{Uppercase_Letter}(\\p{Letter})*)\\[",
 					"beginCaptures": {
 						"1": {
 							"name": "entity.name.type"
@@ -374,7 +371,7 @@
 							"include": "#invalid"
 						}
 					],
-					"end": "\\)"
+					"end": "\\]"
 				},
 				"algebraic-datatype-without-parameter": {
 					"match": "(\\p{Uppercase_Letter}(\\p{Letter})*)",
