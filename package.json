@@ -49,7 +49,7 @@
         "eslint-plugin-prettier": "^4.0.0",
         "prettier": "^2.4.1",
         "semantic-release": "^18.0.0",
-        "vsce": "^2.4.0"
+        "vsce": "^2.6.5"
     },
     "release": {
         "branches": [
