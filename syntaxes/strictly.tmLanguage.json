@@ -260,7 +260,7 @@
 					"include": "#number"
 				},
 				{
-					"include": "#number"
+					"include": "#operator"
 				}
 			],
 			"repository": {
@@ -430,7 +430,7 @@
 					"name": "constant.numeric"
 				},
 				"operator": {
-					"match": "==|++"
+					"match": "==|\\+\\+"
 				}
 			}
 		},
