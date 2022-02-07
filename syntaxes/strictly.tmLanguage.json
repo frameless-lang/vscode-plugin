@@ -265,7 +265,7 @@
 			],
 			"repository": {
 				"control-flow": {
-					"match": "if|then|else|match|case|each",
+					"match": "if|then|else|match|case",
 					"name": "keyword.control"
 				},
 				"function-definition": {
