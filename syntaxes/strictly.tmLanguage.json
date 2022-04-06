@@ -439,7 +439,6 @@
 							"name": "string.quoted.double"
 						}
 					}
-					
 				},
 				"number": {
 					"match": "\\p{digit}+",
@@ -477,11 +476,7 @@
 						},
 						"algebraic-data-type-without-parameters": {
 							"match": "(\\p{Uppercase_Letter}(\\p{Letter}|')*)",
-							"name": {
-								"1": {
-									"name": "storage.type.class"
-								}
-							}
+							"name": "storage.type.class"
 						}
 					}
 				},
@@ -548,7 +543,7 @@
 							"match": ","
 						},
 						{
-							"match": "(\\p{Lowercase_Letter}(\\p{Letter})*)\\s* =",
+							"match": "(\\p{Lowercase_Letter}(\\p{Letter})*)\\s*=",
 							"name": "support.type.property-name"
 						},
 						{
@@ -607,11 +602,7 @@
 						},
 						"algebraic-data-type-without-parameters": {
 							"match": "(\\p{Uppercase_Letter}(\\p{Letter}|')*)",
-							"name": {
-								"1": {
-									"name": "storage.type.class"
-								}
-							}
+							"name": "storage.type.class"
 						}
 					}
 				},
