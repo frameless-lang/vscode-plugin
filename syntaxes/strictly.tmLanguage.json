@@ -175,7 +175,7 @@
 			"patterns": [
 				{
 					"begin": "^(\\p{Lowercase_Letter}(\\p{Letter}|')*)\\s*:",
-					"captures": {
+					"beginCaptures": {
 						"1": {
 							"name": "variable.other.constant"
 						}
@@ -192,7 +192,7 @@
 				},
 				{
 					"begin": "^(\\p{Lowercase_Letter}(\\p{Letter}|')*)\\s*=",
-					"captures": {
+					"beginCaptures": {
 						"1": {
 							"name": "variable.other.constant"
 						}
@@ -216,6 +216,12 @@
 		"statement": {
 			"patterns": [
 				{
+					"match": "\\."
+				},
+				{
+					"include": "#control-flow"
+				},
+				{
 					"include": "#assignment"
 				},
 				{
@@ -237,16 +243,26 @@
 					"include": "#string"
 				},
 				{
+					"include": "#number"
+				},
+				{
 					"include": "#algebraic-data-type"
 				},
 				{
 					"include": "#host-element"
 				},
 				{
+					"include": "#operator"
+				},
+				{
 					"match": ";"
 				}
 			],
 			"repository": {
+				"control-flow": {
+					"match": "(if|then|else|match|case)(\\s+|$)",
+					"name": "keyword.control"
+				},
 				"assignment": {
 					"begin": "(let\\s+)",
 					"beginCaptures": {
@@ -298,7 +314,7 @@
 					"patterns": [
 						{
 							"begin": "(\\p{Lowercase_Letter}(\\p{Letter})*)\\s*:",
-							"captures": {
+							"beginCaptures": {
 								"1": {
 									"name": "support.type.property-name"
 								}
@@ -314,34 +330,24 @@
 							"end": "((?=,|}|\\|)|$)"
 						},
 						{
-							"begin": "(\\p{Lowercase_Letter}(\\p{Letter})*)\\s*=",
+							"match": "(\\p{Lowercase_Letter}(\\p{Letter})*)(\\?(\\p{Lowercase_Letter}(\\p{Letter})*))?\\s*=(?!=)",
 							"captures": {
 								"1": {
 									"name": "support.type.property-name"
-								}
-							},
-							"patterns": [
-								{
-									"include": "#statement"
 								},
-								{
-									"include": "#invalid"
+								"4": {
+									"name": "string.quoted.double"
 								}
-							],
-							"end": "((?=,|}|\\|)|$)"
-						},
-						{
-							"match": "(\\p{Lowercase_Letter}(\\p{Letter})*)",
-							"name": "support.type.property-name"
-						},
-						{
-							"include": "#statement"
+							}
 						},
 						{
 							"match": "\\|"
 						},
 						{
 							"match": ","
+						},
+						{
+							"include": "#statement"
 						},
 						{
 							"include": "#invalid"
@@ -434,6 +440,10 @@
 						}
 					]
 				},
+				"number": {
+					"match": "\\p{digit}+",
+					"name": "constant.numeric.decimal"
+				},
 				"algebraic-data-type": {
 					"patterns": [
 						{
@@ -493,6 +503,10 @@
 							"match": "\\$(\\p{Ll}|\\.)+(\\p{Pd}(\\p{Ll})+)+"
 						}
 					}
+				},
+				"operator": {
+					"match": "(==|\\+\\+|\\+|-|\\*|\\/|%)",
+					"name": "keyword.operator"
 				}
 			}
 		},
