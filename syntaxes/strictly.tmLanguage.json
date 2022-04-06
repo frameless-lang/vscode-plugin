@@ -272,7 +272,7 @@
 					},
 					"patterns": [
 						{
-							"include": "#leftHandSide"
+							"include": "#left-hand-side"
 						},
 						{
 							"include": "#invalid"
@@ -382,7 +382,7 @@
 					},
 					"patterns": [
 						{
-							"include": "#leftHandSide"
+							"include": "#left-hand-side"
 						},
 						{
 							"match": ","
@@ -510,8 +510,112 @@
 				}
 			}
 		},
-		"leftHandSide": {
-			"patterns": []
+		"left-hand-side": {
+			"patterns": [
+				{
+					"include": "#hole"
+				},
+				{
+					"include": "#variable"
+				},
+				{
+					"include": "#record"
+				},
+				{
+					"include": "#list"
+				},
+				{
+					"include": "#algebraic-data-type"
+				},
+				{
+					"include": "#operator"
+				}
+			],
+			"repository": {
+				"hole": {
+					"match": "_",
+					"name": "comment"
+				},
+				"variable": {
+					"match": "\\p{Lowercase_Letter}(\\p{Letter}|')*",
+					"name": "variable.other.constant"
+				},
+				"record": {
+					"begin": "{",
+					"patterns": [
+						{
+							"match": "(\\p{Lowercase_Letter}(\\p{Letter})*)\\s* =",
+							"name": "support.type.property-name"
+						},
+						{
+							"include": "#left-hand-side"
+						},
+						{
+							"include": "#invalid"
+						}
+					],
+					"end": "}"
+				},
+				"list": {
+					"begin": "\\[",
+					"patterns": [
+						{
+							"match": ","
+						},
+						{
+							"include": "#left-hand-side"
+						},
+						{
+							"include": "#invalid"
+						}
+					],
+					"end": "\\]"
+				},
+				"algebraic-data-type": {
+					"patterns": [
+						{
+							"include": "#algebraic-data-type-with-parameters"
+						},
+						{
+							"include": "#algebraic-data-type-without-parameters"
+						}
+					],
+					"repository": {
+						"algebraic-data-type-with-parameters": {
+							"begin": "(\\p{Uppercase_Letter}(\\p{Letter}|')*)\\(",
+							"beginCaptures": {
+								"1": {
+									"name": "storage.type.class"
+								}
+							},
+							"patterns": [
+								{
+									"include": "#left-hand-side"
+								},
+								{
+									"match": ","
+								},
+								{
+									"include": "#invalid"
+								}
+							],
+							"end": "\\)"
+						},
+						"algebraic-data-type-without-parameters": {
+							"match": "(\\p{Uppercase_Letter}(\\p{Letter}|')*)",
+							"name": {
+								"1": {
+									"name": "storage.type.class"
+								}
+							}
+						}
+					}
+				},
+				"operator": {
+					"match": "@",
+					"name": "keyword.operator"
+				}
+			}
 		},
 		"invalid": {
 			"match": ".",
