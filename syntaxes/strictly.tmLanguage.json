@@ -405,12 +405,6 @@
 							"name": "string.quoted.double"
 						}
 					},
-					"end": "(\")",
-					"endCaptures": {
-						"1": {
-							"name": "string.quoted.double"
-						}
-					},
 					"patterns": [
 						{
 							"begin": "(\\${)",
@@ -438,7 +432,14 @@
 							"name": "string.quoted.double",
 							"match": "."
 						}
-					]
+					],
+					"end": "(\")",
+					"endCaptures": {
+						"1": {
+							"name": "string.quoted.double"
+						}
+					}
+					
 				},
 				"number": {
 					"match": "\\p{digit}+",
