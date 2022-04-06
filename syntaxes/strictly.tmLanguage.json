@@ -544,6 +544,9 @@
 					"begin": "{",
 					"patterns": [
 						{
+							"match": ","
+						},
+						{
 							"match": "(\\p{Lowercase_Letter}(\\p{Letter})*)\\s* =",
 							"name": "support.type.property-name"
 						},
