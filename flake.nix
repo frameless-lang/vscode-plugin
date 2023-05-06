@@ -10,21 +10,27 @@
     flake-utils.lib.eachDefaultSystem
       (system:
         let pkgs = nixpkgs.legacyPackages.${system};
-            packageName = "strictly";
+            package = builtins.fromJSON (builtins.readFile ./package.json);
             app = pkgs.vscode-utils.buildVscodeExtension {
-              name = "${packageName}";
+              name = "${package.name}";
               src = ./.;
               nativeBuildInputs = [ pkgs.nodejs pkgs.vsce ];
               preInstall = ''
                 vsce package
               '';
-              vscodeExtPublisher = "${packageName}";
-              vscodeExtName = "${packageName}";
-              vscodeExtUniqueId = "${packageName}.${packageName}";
+              vscodeExtPublisher = "${package.name}";
+              vscodeExtName = "${package.name}";
+              vscodeExtUniqueId = "${package.name}.${package.publisher}";
+            } // {
+              name = "${package.publisher}-${package.name}-${package.version}";
+              version = package.version;
+              vscodeExtPublisher = package.publisher;
+              vscodeExtName = package.name;
+              vscodeExtUniqueId = "${package.publisher}.${package.name}";
             };
         in {
-          packages.${packageName} = app;
-          defaultPackage = self.packages.${system}.${packageName};
+          packages.${package.name} = app;
+          defaultPackage = self.packages.${system}.${package.name};
         }
       );
 }
