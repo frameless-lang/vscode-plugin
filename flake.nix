@@ -21,6 +21,8 @@
               vscodeExtPublisher = "${package.name}";
               vscodeExtName = "${package.name}";
               vscodeExtUniqueId = "${package.name}.${package.publisher}";
+            } // {
+              version = package.version;
             };
         in {
           packages.${package.name} = app;
